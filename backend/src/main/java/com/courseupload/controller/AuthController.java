@@ -52,6 +52,12 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+        if (signUpRequest.getPassword().length() < 8) {
+            Map<String, String> response = new HashMap<>();
+            response.put("error", "Error: Password must be at least 8 characters long!");
+            return ResponseEntity.badRequest().body(response);
+        }
+
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             Map<String, String> response = new HashMap<>();
             response.put("error", "Error: Username is already taken!");
