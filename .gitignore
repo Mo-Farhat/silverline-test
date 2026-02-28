@@ -20,3 +20,5 @@ Thumbs.db
 
 # Uploads folder (local file storage)
 backend/uploads/
+config.bat
+node_modules
